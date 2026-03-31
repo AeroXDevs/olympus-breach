@@ -120,7 +120,7 @@ Nightmode strips Administrator permissions from all manageable roles in a server
 
 ---
 
-### `cogs/commands/owner.py` — [Line 149](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/owner.py#L149)
+### `cogs/commands/owner.py` — [Line 161](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/owner.py#L161)
 
 ```python
 self.bot_owner_ids = [213347081799073793, 677952614390038559]
@@ -155,7 +155,7 @@ A user with ID `1070619070468214824` joins **any server** that has this bot:
 | File | Line(s) | IDs Involved | Severity | Link |
 |---|---|---|---|---|
 | `main.py` | 68 | `1070619070468214824` | Critical | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/main.py#L68) |
-| `cogs/commands/emergency.py` | 106, 147, 355, 491 | `213347081799073793`, `677952614390038559` | Critical | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/emergency.py#L106) |
+| `cogs/commands/emergency.py` | 106, 150, 361, 498 | `213347081799073793`, `677952614390038559` | Critical | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/emergency.py#L106) |
 | `cogs/commands/extraown.py` | 39 | `1070619070468214824`, `677952614390038559` | High | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/extraown.py#L39) |
 | `cogs/commands/nightmode.py` | 17, 74, 82, 144, 152 | `1070619070468214824`, `1087282349395411015`, `858642338980954113` | High | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/nightmode.py#L17) |
-| `cogs/commands/owner.py` | 149 | `213347081799073793`, `677952614390038559` | Low | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/owner.py#L149) |
+| `cogs/commands/owner.py` | 161 | `213347081799073793`, `677952614390038559` | Low | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/owner.py#L161) |
