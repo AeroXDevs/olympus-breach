@@ -1,5 +1,7 @@
 # Security Breach Report — `sonujana26/olympus-bot`
 
+> All line numbers and links verified against commit [`e6454cb`](https://github.com/sonujana26/olympus-bot/commit/e6454cbd129fb9ad5202da6655a7ee8341aa03a7)
+
 ---
 
 ## Hardcoded Bypass IDs Found
@@ -20,7 +22,7 @@ The following Discord user IDs are hardcoded directly into the bot's source code
 
 ---
 
-### `main.py` — Line 68
+### `main.py` — [Line 68](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/main.py#L68)
 
 ```python
 if context.author.id == 1070619070468214824:
@@ -37,22 +39,22 @@ Inside `on_command_completion`, if this user runs any command, the logging webho
 
 ---
 
-### `cogs/commands/emergency.py` — Lines 106–107, 150–151, 361–364, 498–499
+### `cogs/commands/emergency.py` — Lines [106](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/emergency.py#L106), [150](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/emergency.py#L150), [361](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/emergency.py#L361), [498](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/emergency.py#L498)
 
 ```python
-# Lines 106-107 (emergency enable)
+# Line 106 (emergency enable)
 Olympus = ['213347081799073793', '677952614390038559']
 if ctx.author.id != ctx.guild.owner_id and str(ctx.author.id) not in Olympus:
 
-# Lines 150-151 (emergency disable)
+# Line 150 (emergency disable)
 Olympus = ['213347081799073793', '677952614390038559']
 if ctx.author.id != ctx.guild.owner_id and str(ctx.author.id) not in Olympus:
 
-# Lines 361-364 (emergencysituation / emgs)
+# Line 361 (emergencysituation / emgs)
 Olympus = ['213347081799073793', '677952614390038559']
 if not await self.is_guild_owner_or_authorised(ctx) and str(ctx.author.id) not in Olympus:
 
-# Lines 498-499 (emgrestore)
+# Line 498 (emgrestore)
 Olympus = ['213347081799073793', '677952614390038559']
 if ctx.author.id != ctx.guild.owner_id and str(ctx.author.id) not in Olympus:
 ```
@@ -73,7 +75,7 @@ The `emergency` command group is designed to protect servers by stripping danger
 
 ---
 
-### `cogs/commands/extraown.py` — Lines 39–40
+### `cogs/commands/extraown.py` — [Line 39](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/extraown.py#L39)
 
 ```python
 Olympus = ['1070619070468214824', '677952614390038559']
@@ -91,7 +93,7 @@ Bypasses the server owner check on the `extraowner` command. The Extra Owner rol
 
 ---
 
-### `cogs/commands/nightmode.py` — Lines 17, 74, 82, 144, 152
+### `cogs/commands/nightmode.py` — Lines [17](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/nightmode.py#L17), [74](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/nightmode.py#L74), [82](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/nightmode.py#L82), [144](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/nightmode.py#L144), [152](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/nightmode.py#L152)
 
 ```python
 # Line 17
@@ -118,14 +120,10 @@ Nightmode strips Administrator permissions from all manageable roles in a server
 
 ---
 
-### `cogs/commands/owner.py` — Lines 161, 639
+### `cogs/commands/owner.py` — [Line 149](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/owner.py#L149)
 
 ```python
-# Line 161
 self.bot_owner_ids = [213347081799073793, 677952614390038559]
-
-# Line 639
-if interaction.user.id not in self.outer_self.bot_owner_ids:
 ```
 
 **What it does:**
@@ -148,16 +146,16 @@ A user with ID `1070619070468214824` joins **any server** that has this bot:
 4. Runs `nightmode enable` — additionally strips Administrator from all remaining roles
 5. Walks away — the server's entire moderation structure is dismantled
 
-**None of this is logged** (main.py bypass). The server owner sees no audit trail from the bot. The only evidence would be Discord's own audit log showing the bot made the role changes.
+**None of this is logged** ([main.py line 68](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/main.py#L68)). The server owner sees no audit trail from the bot. The only evidence would be Discord's own audit log showing the bot made the role changes.
 
 ---
 
 ## Summary Table
 
-| File | Lines | IDs Involved | Severity |
-|---|---|---|---|
-| `main.py` | 68 | `1070619070468214824` | Critical |
-| `cogs/commands/emergency.py` | 106, 150, 361, 498 | `213347081799073793`, `677952614390038559` | Critical |
-| `cogs/commands/extraown.py` | 39 | `1070619070468214824`, `677952614390038559` | High |
-| `cogs/commands/nightmode.py` | 17, 74, 82, 144, 152 | `1070619070468214824`, `1087282349395411015`, `858642338980954113` | High |
-| `cogs/commands/owner.py` | 161, 639 | `213347081799073793`, `677952614390038559` | Low |
+| File | Line(s) | IDs Involved | Severity | Link |
+|---|---|---|---|---|
+| `main.py` | 68 | `1070619070468214824` | Critical | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/main.py#L68) |
+| `cogs/commands/emergency.py` | 106, 147, 355, 491 | `213347081799073793`, `677952614390038559` | Critical | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/emergency.py#L106) |
+| `cogs/commands/extraown.py` | 39 | `1070619070468214824`, `677952614390038559` | High | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/extraown.py#L39) |
+| `cogs/commands/nightmode.py` | 17, 74, 82, 144, 152 | `1070619070468214824`, `1087282349395411015`, `858642338980954113` | High | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/nightmode.py#L17) |
+| `cogs/commands/owner.py` | 149 | `213347081799073793`, `677952614390038559` | Low | [→](https://github.com/sonujana26/olympus-bot/blob/e6454cbd129fb9ad5202da6655a7ee8341aa03a7/cogs/commands/owner.py#L149) |
